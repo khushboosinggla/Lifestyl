@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Wishlist | LifeStyle</title>
+  <link rel="stylesheet" href="edit.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    
+    .top-banner {
+      background: linear-gradient(90deg, #000000, #434343);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 15px 50px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a2a2a;
+      letter-spacing: 1px;
+    }
+    
+    .logo span {
+      color: #e8b4b8;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      color: #333;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .nav-btn:hover {
+      background-color: #e8b4b8;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .search-box {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+
+    /* Wishlist container */
+    .wishlist-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #2F2723;
+      text-align: center;
+    }
+
+    .wishlist-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .wishlist-item {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .wishlist-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .wishlist-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+
+    .wishlist-item h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .wishlist-item p {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .wishlist-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .move-to-cart {
+      flex: 1;
+      background-color: #2F2723;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .move-to-cart:hover {
+      background-color: #4a3f38;
+      transform: translateY(-2px);
+    }
+
+    .remove-from-wishlist {
+      background-color: white;
+      color: #2F2723;
+      border: 1px solid #2F2723;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .remove-from-wishlist:hover {
+      background-color: #ffebee;
+      color: #e57373;
+      border-color: #e57373;
+    }
+
+    .empty-wishlist {
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    .empty-wishlist i {
+      font-size: 50px;
+      color: #e0e0e0;
+      margin-bottom: 20px;
+    }
+
+    .empty-wishlist p {
+      font-size: 18px;
+      color: #757575;
+      margin-bottom: 20px;
+    }
+
+    .shop-now-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #2F2723;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .shop-now-btn:hover {
+      background-color: #4a3f38;
+      transform: translateY(-2px);
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 4px;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeOut {
+      from {opacity: 1; transform: translateY(0);}
+      to {opacity: 0; transform: translateY(-20px);}
+    }
+    .footer{
+      background-color: #E5E1DC;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-banner">
+    Free shipping on orders over ₹1999 | Limited time offer
+  </div>
+  
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Navbar  -->
+  <nav class="navbar">
+    <div class="logo">LifeStyle<span>.</span></div>
+  
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">HOME</a>
+      <a href="trythishitagain.html" class="nav-btn">MEN</a>
+      <a href="a1.html" class="nav-btn">WOMEN</a>
+      <a href="mainpage.html" class="nav-btn">KIDS</a> 
+      <a href="sale1.html" class="nav-btn">SALE</a>
+      <input type="text" placeholder="Search..." class="search-box">
+      
+      <!-- Cart and Wishlist Buttons -->
+      <div class="cart-wishlist-btns" style="display: flex; gap: 15px; margin-left: 15px;">
+        <a href="wishlist.html" class="nav-btn" style="position: relative; display: flex; align-items: center; gap: 5px; background-color: #e8b4b8; color: white;">
+          <i class="fa fa-heart"></i> 
+          <span>Wishlist</span>
+          <span class="wishlist-count" style="position: absolute; top: -5px; right: -5px; background-color: #2F2723; color: white; text-xs; rounded-full; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 50%;">0</span>
+        </a>
+        <a href="cart.php" class="nav-btn" style="position: relative; display: flex; align-items: center; gap: 5px;">
+          <i class="fa fa-shopping-bag"></i> 
+          <span>Cart</span>
+          <span class="cart-count" style="position: absolute; top: -5px; right: -5px; background-color: #2F2723; color: white; text-xs; rounded-full; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 50%;">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Wishlist Content -->
+  <div class="wishlist-container">
+    <h1 class="page-title">My Wishlist</h1>
+    
+    <div id="wishlist-items" class="wishlist-items">
+      <!-- Wishlist items will be dynamically populated here -->
+    </div>
+    
+    <!-- Empty wishlist message - will be shown if no items in wishlist -->
+    <div id="empty-wishlist" class="empty-wishlist" style="display: none;">
+      <i class="fa fa-heart-o"></i>
+      <p>Your wishlist is empty</p>
+      <a href="index.html" class="shop-now-btn">CONTINUE SHOPPING</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About LifeStyle</h4>
+        <p>Your go-to destination for stylish and affordable fashion. Discover trends, explore collections, and express your individuality with LifeStyle.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="men.html">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Kids</a></li>
+          <li><a href="#">Home & Living</a></li>
+          <li><a href="beauty.html">Beauty</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/accounts/login/?hl=en"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/i/flow/login?lang=en"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 LifeStyle Fashion. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for wishlist functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toast = document.getElementById('toast');
+      const wishlistItemsContainer = document.getElementById('wishlist-items');
+      const emptyWishlistMessage = document.getElementById('empty-wishlist');
+      const wishlistCountElement = document.querySelector('.wishlist-count');
+
+      // Show toast notification
+      function showToast(message, isRedirect = false) {
+        toast.textContent = message;
+        toast.style.display = 'block';
+        
+        setTimeout(() => {
+          toast.style.display = 'none';
+          if (isRedirect) {
+            window.location.href = isRedirect;
+          }
+        }, 3000);
+      }
+
+      // Update wishlist count
+      function updateWishlistCount() {
+        const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+        wishlistCountElement.textContent = wishlistItems.length;
+      }
+
+      // Update cart count
+      function updateCartCount() {
+        fetch('add_to_cart_api.php')
+          .then(response => response.json())
+          .then(data => {
+            if(data.success) {
+              const cartCountElement = document.querySelector('.cart-count');
+              if(cartCountElement) {
+                cartCountElement.textContent = data.cartCount;
+              }
+            }
+          })
+          .catch(error => console.error('Error updating cart count:', error));
+      }
+
+      // Render wishlist items
+      function renderWishlistItems() {
+        const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+        
+        if (wishlistItems.length === 0) {
+          wishlistItemsContainer.style.display = 'none';
+          emptyWishlistMessage.style.display = 'block';
+          return;
+        }
+
+        wishlistItemsContainer.style.display = 'grid';
+        emptyWishlistMessage.style.display = 'none';
+        wishlistItemsContainer.innerHTML = '';
+
+        wishlistItems.forEach(item => {
+          const wishlistItem = document.createElement('div');
+          wishlistItem.classList.add('wishlist-item');
+          wishlistItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>₹${item.price}</p>
+            <div class="wishlist-actions">
+              <button class="move-to-cart" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">
+                Move to Cart
+              </button>
+              <button class="remove-from-wishlist" data-id="${item.id}">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          `;
+          wishlistItemsContainer.appendChild(wishlistItem);
+        });
+
+        // Set up event listeners for move to cart buttons
+        document.querySelectorAll('.move-to-cart').forEach(button => {
+          button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const price = this.getAttribute('data-price');
+            const image = this.getAttribute('data-image');
+            
+            // Add to cart using the API
+            const formData = new FormData();
+            formData.append('productId', id);
+            formData.append('name', name);
+            formData.append('price', price);
+            formData.append('image', image);
+            formData.append('quantity', 1);
+            formData.append('action', 'add');
+
+            this.disabled = true;
+            this.textContent = 'Adding...';
+            
+            fetch('add_to_cart_api.php', {
+              method: 'POST',
+              body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+              if(data.success) {
+                // Remove from wishlist
+                removeFromWishlist(id);
+                showToast(`${name} moved to cart`);
+                updateCartCount();
+              } else {
+                showToast('Error: ' + data.message);
+                this.disabled = false;
+                this.textContent = 'Move to Cart';
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              showToast('Error adding to cart. Please try again.');
+              this.disabled = false;
+              this.textContent = 'Move to Cart';
+            });
+          });
+        });
+
+        // Set up event listeners for remove buttons
+        document.querySelectorAll('.remove-from-wishlist').forEach(button => {
+          button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            removeFromWishlist(id);
+          });
+        });
+      }
+
+      // Remove item from wishlist
+      function removeFromWishlist(id) {
+        const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+        const itemToRemove = wishlistItems.find(item => item.id == id);
+        const updatedWishlist = wishlistItems.filter(item => item.id != id);
+        
+        localStorage.setItem('wishlistItems', JSON.stringify(updatedWishlist));
+        showToast(`${itemToRemove ? itemToRemove.name : 'Item'} removed from wishlist`);
+        updateWishlistCount();
+        renderWishlistItems();
+      }
+
+      // Initialize
+      updateWishlistCount();
+      updateCartCount();
+      renderWishlistItems();
+    });
+  </script>
+</body>
+</html>
