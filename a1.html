@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lifestyle Fashion Hub</title>
+  <script src="cart_sync.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+     
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    
+    .top-banner {
+      background: linear-gradient(90deg, #000000, #434343);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 15px 50px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a2a2a;
+      letter-spacing: 1px;
+    }
+    
+    .logo span {
+      color: #e8b4b8;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      color: #333;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .nav-btn:hover {
+      background-color: #e8b4b8;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .search-box {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: #e8b4b8;
+      width: 220px;
+    }
+    
+    body {
+      background-color: #E5E1DC;
+      color: #111;
+    }
+    .dropdown {
+      position: relative;
+    }
+    
+    .mega-menu {
+  display: none;
+  position: absolute;
+  top: 160%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 170px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+    .dropdown:hover .mega-menu {
+      display: flex;
+    }
+    
+    .mega-column {
+      flex: 1;
+      min-width: 100px;
+      margin-right: 20px;
+    }
+    
+    .mega-column h4 {
+      margin-bottom: 10px;
+      color: #2F2723;
+    }
+    
+    .mega-column a {
+      display: block;
+      text-decoration: none;
+      color: #807777;
+      margin: 4px 0;
+      font-size: 14px;
+    }
+    
+    .mega-column a:hover {
+      color: #000;
+      font-weight: bold;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+    
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+      opacity: 0.85;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 60px 20px;
+      color: #fff;
+    }
+    
+    .hero-content h1 {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .shop-btn {
+      background-color: white;
+      color: black;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .shop-btn:hover {
+      background-color: #6A584D;
+    }
+    
+    section {
+      padding: 50px 20px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: black;
+      margin-bottom: 20px;
+    }
+    
+    .product-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .product-item {
+      width: 30%;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 20px;
+    }
+    
+    .product-item p{
+      margin-top: 10px;
+    }
+    
+    .product-item img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    
+    .product-btn {
+      background-color: #2F2723;
+      color: white;
+      width: 250px;
+      padding: 10px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .product-btn:hover {
+      background-color: #2F2723;
+    }
+    
+    /* Special Offers */
+    .special-offers {
+      padding: 50px 20px;
+      background-color: #fff;
+    }
+    
+    .offer-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .offer-card img {
+      margin-left: 2px;
+      width: 900px;
+      height: 600px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    
+    .offer-details {
+      max-width: 400px;
+    }
+    
+    .offer-details h3 {
+      font-size: 30px;
+    }
+    
+    .offer-details p {
+      font-size: 26px;
+      margin: 20px 0;
+    }
+    
+    .offer-details .shop-btn {
+      background-color: #2F2723;
+      padding: 10px 20px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      width: 350px;
+      border-radius: 30px;
+    }
+    
+    .offer-details .shop-btn:hover {
+      background-color: #2F2723;
+    }
+    
+    /* Call to Action Section */
+    .cta-section {
+      background-color: #6C5A4B;
+      padding: 50px 20px;
+      color: white;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 28px;
+    }
+    
+    .cta-section form {
+      margin-top: 20px;
+    }
+    
+    .cta-section input {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 250px;
+    }
+    
+    .cta-section button {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    .cta-section button:hover {
+      background-color: white;
+      color: black;
+    }
+    
+    .footer {
+      background-color: #B2ADA9;
+      color: #333;
+      padding: 40px 20px 20px;
+      font-family: 'Arial', sans-serif;
+      margin-top: 50px;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    .footer-section {
+      flex: 1 1 200px;
+      margin: 20px;
+    }
+    
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #111;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #e91e63;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .social-icons a {
+      margin-right: 10px;
+      display: inline-block;
+    }
+    
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+    
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+    .message {
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: opacity 0.5s;
+    }
+    .message.success {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+    .message.error {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+    .message.info {
+      background-color: #e3f2fd;
+      color: #0d47a1;
+    }
+    
+    /* Add cart count styling */
+    .cart-count {
+      background-color: #e8b4b8;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      position: relative;
+      top: -10px;
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      border-radius: 4px;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeOut {
+      from {opacity: 1; transform: translateY(0);}
+      to {opacity: 0; transform: translateY(-20px);}
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner-->
+  <div class="top-banner">
+    Free shipping on orders over ₹1999 | Limited time offer
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Navbar  -->
+  <nav class="navbar">
+    <div class="logo">LifeStyle<span>.</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">HOME</a>
+      <a href="trythishitagain.html" class="nav-btn">MEN</a>
+     
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="nav-btn">WOMEN</a>
+        <div class="mega-menu">
+          <div class="mega-column">
+            <h4>Clothing</h4>
+            <a href="extra.html">Tops</a>
+            <a href="dresses.html">Dresses</a>
+            <a href="extra.html">Sarees</a>
+            <a href="extra.html">Skirts</a>
+          </div>
+          <div class="mega-column">
+            <h4>Western Wear</h4>
+            <a href="blazer.html">Jumpsuits</a>
+            <a href="blazer.html">Blazers</a>
+            <a href="blazer.html">Co-ords</a>
+          </div>
+          <div class="mega-column">
+            <h4>Kurtas</h4>
+            <a href="longkurta.html">Long Kurtas</a>
+            <a href="longkurta.html">Short Kurtas</a>
+            <a href="longkurta.html">Kurta Sets</a>
+          </div>
+          <div class="mega-column">
+            <h4>Jeans & Trousers</h4>
+            <a href="jeans.html">Jeans</a>
+            <a href="jeans.html">Trousers</a>
+            <a href="jeans.html">Palazzos</a>
+          </div>
+          <div class="mega-column">
+            <h4>Beauty</h4>
+            <a href="BM.html">Lipsticks</a>
+            <a href="BM.html">Skincare</a>
+            <a href="BM.html">Fragrance</a>
+          </div>
+        </div>
+      </div>
+      <a href="mainpage.html" class="nav-btn">KIDS</a> 
+      <a href="sale1.html" class="nav-btn">SALE</a>
+      <input type="text" placeholder="Search..." class="search-box">
+      
+      <!-- Updated Cart and Wishlist Buttons -->
+      <div class="cart-wishlist-btns" style="display: flex; gap: 15px; margin-left: 15px;">
+        <a href="wishlist.php" class="flex items-center gap-1">
+          <i class="ri-heart-line text-xl"></i>
+          <span>WISHLIST</span>
+          <span class="wishlist-count absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center" style="display: flex;">5</span>
+        </a>
+        <a href="cart.php" class="nav-btn" style="position: relative; display: flex; align-items: center; gap: 5px;">
+          <i class="fa fa-shopping-bag"></i> 
+          <span>Cart</span>
+          <span class="cart-count" style="position: absolute; top: -5px; right: -5px; background-color: #2F2723; color: white; text-xs; rounded-full; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 50%;">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="video/vv2.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <h1>Women Fashion Collection</h1>
+      <p>Discover the latest trends in women fashion</p>
+      <a href="viewall.html"><button class="shop-btn">Shop Now</button></a>
+    </div>
+  </section>
+
+  <section class="trending-now">
+    <h2>Trending Now</h2>
+    <div class="product-grid">
+      <div class="product-item">
+        <a href="dresses.html"><img src="dres/trend1.avif" alt="Trending 1" /></a>
+        <h4>Strappy dress</h4>
+        <p>₹2499</p>
+        <button class="product-btn add-to-cart-btn" 
+          data-product-id="101" 
+          data-product-name="Strappy dress" 
+          data-product-price="2499" 
+          data-product-image="dres/trend1.avif">Add to Cart</button>
+      </div>
+      <div class="product-item">
+        <a href="extra.html"><img src="dres/tren2.avif" alt="Trending 2" /></a>
+        <h4>Flutter-sleeved chiffon blouse</h4>
+        <p>₹3999</p>
+        <button class="product-btn add-to-cart-btn" 
+          data-product-id="102" 
+          data-product-name="Flutter-sleeved chiffon blouse" 
+          data-product-price="3999" 
+          data-product-image="dres/tren2.avif">Add to Cart</button>
+      </div>
+      <div class="product-item">
+       <a href="dresses.html"><img src="dres/trend3.avif" alt="Trending 3" /></a> 
+        <h4>Bubble-hem dress</h4>
+        <p>₹4499</p>
+        <button class="product-btn add-to-cart-btn" 
+          data-product-id="103" 
+          data-product-name="Bubble-hem dress" 
+          data-product-price="4499" 
+          data-product-image="dres/trend3.avif">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+  
+  <div class="new-arrivals-section" style="position: relative; height: 600px; width: 100%; overflow: hidden;">
+    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+      <source src="video/v5.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    
+    <div style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));">
+      
+      <h2 style="
+        color: white;
+        font-weight: bold;
+        margin-bottom: 30px;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: 3px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">
+        NEW ARRIVALS
+      </h2>
+      
+      <a href="newarrival.html" style="
+        background-color: white;
+        color: black;
+        padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none; 
+      display: inline-block;
+      font-size: 16px;">
+        SHOP NOW
+      </a>
+    </div>
+  </div>
+ 
+  
+  <!-- Special Offers Section -->
+  <section class="special-offers">
+    <h2>Special Offers</h2>
+    <div class="offer-card">
+      <img src="dres/of2.avif" alt="Special Offer" />
+      <div class="offer-details">
+        <h3>Up to 50% Off on Tops</h3>
+        <p>Limited time offer. Shop now and save big on the latest styles!</p>
+        <a href="longkurta.html"><button class="shop-btn">Shop Now</button></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Stay Updated with the Latest Trends</h2>
+      <p>Sign up for our newsletter and never miss a sale!</p>
+      <form action="#">
+        <input type="email" placeholder="Enter your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About LifeStyle</h4>
+        <p>Your go-to destination for stylish and affordable fashion. Discover trends, explore collections, and express your individuality with LifeStyle.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="men.html">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Kids</a></li>
+          <li><a href="#">Home & Living</a></li>
+          <li><a href="beauty.html">Beauty</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/"><img src="images/fb.jpg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="images/insta.jpg" alt="Instagram" /></a>
+          <a href="https://x.com/i/flow/login?lang=en"><img src="images/twi.png" alt="Twitter" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 LifeStyle Fashion. All rights reserved.</p>
+    </div>
+  </footer>  
+
+  <!-- Cart notification container -->
+  <div class="cart-message"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update cart count on page load
+      updateNavCounts();
+      
+      // Setup toast functionality
+      const toast = document.getElementById('toast');
+      
+      // Function to show toast message
+      function showToast(message) {
+        toast.textContent = message;
+        toast.style.display = 'block';
+        toast.style.animation = 'fadeIn 0.5s';
+        
+        // Hide toast after 3 seconds
+        setTimeout(() => {
+          toast.style.animation = 'fadeOut 0.5s';
+          setTimeout(() => {
+            toast.style.display = 'none';
+          }, 500);
+        }, 3000);
+      }
+      
+      // Add event listeners to all "Add to Cart" buttons
+      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+      
+      addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent default button behavior
+          
+          // Extract product information from data attributes
+          const productId = this.getAttribute('data-product-id');
+          const productName = this.getAttribute('data-product-name');
+          const productPrice = this.getAttribute('data-product-price');
+          const productImage = this.getAttribute('data-product-image');
+          
+          // Create form data for AJAX request
+          const formData = new FormData();
+          formData.append('action', 'add');
+          formData.append('product_id', productId);
+          formData.append('product_name', productName);
+          formData.append('price', productPrice);
+          formData.append('image', productImage);
+          formData.append('quantity', 1);
+          
+          // Send AJAX request to add item to cart
+          fetch('add_to_cart_api.php', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.success) {
+              // Show success message
+              showToast('Item added to cart successfully!');
+              
+              // Update cart in localStorage
+              let cart = JSON.parse(localStorage.getItem('cart')) || [];
+              
+              // Check if product already exists in cart
+              const existingItemIndex = cart.findIndex(item => item.product_id === productId);
+              
+              if (existingItemIndex !== -1) {
+                // Update quantity if product already in cart
+                cart[existingItemIndex].quantity = (parseInt(cart[existingItemIndex].quantity) || 0) + 1;
+              } else {
+                // Add new item to cart
+                cart.push({
+                  product_id: productId,
+                  product_name: productName,
+                  price: productPrice,
+                  image: productImage,
+                  quantity: 1
+                });
+              }
+              
+              // Save updated cart to localStorage
+              localStorage.setItem('cart', JSON.stringify(cart));
+              
+              // Update cart count in navbar
+              updateNavCounts();
+            } else {
+              showToast('Failed to add item to cart: ' + (data.message || 'Unknown error'));
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showToast('Error adding item to cart. Please try again.');
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

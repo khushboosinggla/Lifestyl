@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Page</title>
+  <link rel="stylesheet" href="prdoct1.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+   .product-card button {
+      background-color: #2F2723;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    
+    .product-card button:hover {
+      background-color: #4a3f38;
+      transform: translateY(-2px);
+    }
+
+    /* New Navbar Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    
+    .top-banner {
+      background: linear-gradient(90deg, #000000, #434343);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 15px 50px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a2a2a;
+      letter-spacing: 1px;
+    }
+    
+    .logo span {
+      color: #2a2a2a;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      color: #333;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .nav-btn:hover {
+      background-color: #e8b4b8;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .search-box {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: #e8b4b8;
+      width: 220px;
+    }
+    
+    .dropdown {
+      position: relative;
+    }
+    
+    .mega-menu {
+      display: none;
+      position: absolute;
+      top: 250%;
+      left: 0;
+      width: 1000px;
+      height: 200px;
+      background-color: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      z-index: 1000;
+    }
+    
+    .dropdown:hover .mega-menu {
+      display: flex;
+    }
+    
+    .mega-column {
+      flex: 1;
+      min-width: 100px;
+      margin-right: 20px;
+    }
+    
+    .mega-column h4 {
+      margin-bottom: 10px;
+      color: #2F2723;
+    }
+    
+    .mega-column a {
+      display: block;
+      text-decoration: none;
+      color: #807777;
+      margin: 4px 0;
+      font-size: 14px;
+    }
+    
+    .mega-column a:hover {
+      color: #000;
+      font-weight: bold;
+    }
+    .footer{
+      background-color: #E5E1DC;
+    }
+    .footer {
+      background-color: #B2ADA9;
+      color: #333;
+      padding: 40px 20px 20px;
+      font-family: 'Arial', sans-serif;
+      margin-top: 50px;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    .footer-section {
+      flex: 1 1 200px;
+      margin: 20px;
+    }
+    
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #111;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #e91e63;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .social-icons a {
+      margin-right: 10px;
+      display: inline-block;
+    }
+    
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+    
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    
+  </style>
+  <style type="text/css" id="operaUserStyle"></style></head>
+
+</head>
+<body class="bg-white min-h-screen">
+
+  <!-- Header -->
+  <div class="top-banner">
+    FREE SHIPPING ON ORDERS OVER ₹999 | USE CODE: FREESHIP
+  </div>
+  <nav class="navbar">
+    <div class="logo">LIFE<span>STYLE</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">HOME</a>
+      <a href="a1.html" class="nav-btn">WOMEN</a>
+      <a href="trythishitagain.html" class="nav-btn">MEN</a>
+      <!-- <a href="mainpage.html" class="nav-btn">KIDS</a> -->
+      <div class="dropdown">
+        <a href="mainpage.html" class="nav-btn">kIDS</a>
+        <div class="mega-menu">
+          <div class="mega-column">
+            <h4>Clothing</h4>
+            <a href="newarrival.html">Tops</a>
+            <a href="dresses.html">Dresses</a>
+            <a href="va.html">Tshirts</a>
+            <a href="denims.html">Skirts</a>
+          </div>
+          <div class="mega-column">
+            <h4>Western Wear</h4>
+            <a href="shirts.html">Jumpsuits</a>
+            <a href="denims.html">Denims</a>
+            <a href="boys1.html">Co-ords</a>
+          </div>
+          <div class="mega-column">
+            <h4>Jeans & Trousers</h4>
+            <a href="denims.html">Jeans</a>
+            <a href="boys1.html">Trousers</a>
+            <a href="va.html">viewall</a>
+          </div>
+          
+        </div>
+      </div>
+      <a href="sale1.html" class="nav-btn">SALE</a>
+      <!-- <a href="sale1.html" class="nav-btn">SALE</a> -->
+      <input type="text" placeholder="Search..." class="search-box">
+      <a href="lg.html" class="nav-btn"><i class="ri-user-line"></i></a>
+      <a href="wish.html" class="nav-btn"><i class="ri-heart-line"></i></a>
+      <a href="#" class="nav-btn"><i class="ri-shopping-bag-line"></i></a>
+    </div>
+  </nav>
+<!-- Top Section: Images + Product Info Side by Side -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto mt-10">
+  <!-- Images -->
+  <div class="flex gap-6 items-start w-full">
+    <div class="flex-1 max-w-[500px]">
+      <div class="relative">
+        <img id="product-image" src="" alt="Main Product" class="w-full rounded-lg object-cover" style="height: 550px;">
+        <div class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">SALE!</div>
+      </div>
+    </div>
+    <div class="w-[150px] space-y-4">
+      <img id="small-product-image" src="" alt="Small Product" class="w-full rounded-md border border-gray-300 cursor-pointer" style="height: 150px; object-fit: cover;">
+    </div>
+  </div>
+  
+
+  <!-- Product Info + Description (RIGHT side) -->
+  <div>
+    <h1 id="product-name" class="text-3xl font-bold mb-4">Product Name</h1>
+
+    <div class="flex items-center mb-4">
+      <div class="star-rating flex text-yellow-500 text-xl">
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-line"></i>
+      </div>
+      <span class="text-sm text-gray-500 ml-2">(3 reviews)</span>
+    </div>
+
+    <div class="mb-4">
+      <span id="product-price" class="text-2xl font-bold text-gray-900">₹0</span>
+      <span id="product-mrp" class="text-sm text-gray-500 line-through ml-2">₹0</span>
+    </div>
+
+    <div class="mb-6">
+      <label class="block text-sm font-medium text-gray-700 mb-2">SIZE</label>
+      <select class="w-full border border-gray-300 px-4 py-2 rounded">
+        <option>Choose an option</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+    </div>
+
+    <div class="flex items-center gap-4 mb-6">
+      <input type="number" value="1" min="1" class="w-16 border border-gray-300 px-4 py-2 rounded">
+      
+      <!-- Add to Cart Button -->
+      <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+        ADD TO CART
+      </button>
+    
+      <!-- Buy Now Button -->
+      <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+        BUY NOW
+      </button>
+    </div>
+
+
+    <div class="mb-6">
+      <a href="#" class="text-sm text-gray-500 hover:underline">Add to Wishlist</a>
+    </div>
+
+    <!-- DESCRIPTION BELOW CART AREA -->
+    <div class="mt-8">
+      <h2 class="text-xl font-bold mb-2">Description</h2>
+      <p id="product-description" class="text-gray-700 leading-relaxed mb-4">
+        Regular fit linen shirt. Featuring a lapel collar, long sleeves with buttoned cuffs and a button-up front.
+      </p>
+
+      <h2 class="text-xl font-bold mb-2">Product Details</h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4">
+        <li>Material: 100% Cotton</li>
+        <li>Care: Machine wash cold</li>
+        <li>Fit: Relaxed fit</li>
+      </ul>
+
+      <h2 class="text-xl font-bold mb-2">Delivery and Returns</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Free delivery on orders over ₹999. Returns accepted within 15 days of purchase.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const products = [
+  
+    {
+      id: 1,
+      name: "Cotton co-ord set",
+      price: "₹1990",
+      image: "New folder/gc2.jpg",
+      description: "Cotton co-ord set ,sleeveless,comfortable.",
+      
+    },
+    {
+      id: 2,
+      name: "Graphic Tshirt",
+      price: "₹2050",
+      image: "New folder/t6.jpg",
+      description: "Graphic design comfy Oversized tshirt.",
+
+    },
+    {
+      id: 3,
+      name: "Graphic Tshirt",
+      price: "₹9810",
+      image: "New folder/top5.jpg",
+      description: "Graphic design comfy Oversized tshirt.",
+     
+    },
+    {
+      id: 4,
+      name: "Regular Bow Top",
+      price: "₹1499",
+      image: "New folder/img1.jpg",
+      description: "Graphic tee, a classic black short-sleeve with a sweet pink bow detail",
+    
+    },
+    {
+      id: 5,
+      name: "Slim fit jeans",
+      price: "₹1499",
+      image: "New folder/top6.jpg",
+      description: "Solid blue color denim slim fit jeans with soft and stretchabble fabric.",
+     
+    },
+    {
+      id: 6,
+      name: "Plaid funnel",
+      price: "₹1390",
+      image: "New folder/girl2.jpg",
+      description: "Drape neck top, a off white long-sleeve with an asymmetrical hem.",
+      
+    },
+    {
+      id: 7,
+      name: "Tied Top",
+      price: "₹1499",
+      image: "New folder/img15.jpg",
+      description: "Square neck top, a stylish burgundy long-sleeve with subtle side ruching.",
+      
+    },
+    {
+      id: 8,
+      name: "Regular Fit Top",
+      price: "₹1459",
+      image: "New folder/img6.jpg",
+      description: "Lace-up blouse, a textured off-white top with a collared neckline and front ties.",
+      
+    },
+    {
+      id: 9,
+      name: "Gathered Tank Top",
+      price: "₹890",
+      image: "New folder/c3.jpg",
+      description: "Asymmetrical top, a chic mauve sleeveless top with a unique draped detail.",
+      
+    },
+    {
+      id: 10,
+      name: "Gathered Top",
+      price: "₹599",
+      image: "New folder/top2.jpg",
+      description: "Puff sleeve top, a charming navy top with a square neck, lace trim, and tie front.",
+      
+    },
+    {
+      id: 11,
+      name: "Layered Top",
+      price: "₹799",
+      image: "New folder/girl5.jpg",
+      description: "Cowl neck top, a soft pink short-sleeve top with a draped neckline",
+      
+    },
+    {
+      id: 12,
+      name: "Black Vest",
+      price: "₹890",
+      image: "New folder/t5.jpg",
+      description: "Cropped vest, a sleek black button-front vest with a tailored look.",
+      
+    },
+    {
+      id: 13,
+      name: "Denim Top",
+      price: "₹1499",
+      image: "New folder/t3.jpg",
+      description: " Denim blouse, a cropped blue jean top with a lace-up front and balloon sleeves.",
+     
+    },
+    {
+      id: 14,
+      name: "Bow Tank Top",
+      price: "₹2999",
+      image: "New folder/girl14.jpg",
+      description: "Sleeveless top, a light blue denim-look top with a tie-up front.",
+      
+    },
+    {
+      id:   15,
+      name: "Printed Pullover Top",
+      price: "₹890",
+      image: "New folder/img1.jpg",
+      description: "Graphic tee, a classic white short-sleeve tee with a playful pink slogan.",
+     
+    },
+    {
+      id: 16,
+      name: "Darted Top",
+      price: "₹1499",
+      image: "New folder/img1.jpg",
+      description: "Long-sleeve top, a fitted brown knit top with a notched neckline and lettuce trim.",
+      
+    },
+  ];
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+const product = products[id];
+
+if (product) {
+  document.getElementById("product-name").textContent = product.name;
+  document.getElementById("product-price").textContent = product.price;
+  document.getElementById("product-mrp").textContent = product.mrp;
+  document.getElementById("product-description").textContent = product.description;
+  document.getElementById("product-image").src = product.image;
+  document.getElementById("small-product-image").src = product.image; // same image
+} else {
+  document.querySelector("body").innerHTML = "<h1 class='text-center mt-10 text-xl'>Product not found.</h1>";
+}
+
+</script>
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h4>About LifeStyle</h4>
+      <p>Your go-to destination for stylish and affordable fashion. Discover trends, explore collections, and express your individuality with LifeStyle.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Kids</a></li>
+        <li><a href="#">Home & Living</a></li>
+        <li><a href="beauty.html">Beauty</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Shipping</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><img src="images/fb.jpg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="images/insta.jpg" alt="Instagram" /></a>
+          <a href="https://x.com/i/flow/login?lang=en"><img src="images/twi.png" alt="Twitter" /></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 LifeStyle Fashion. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

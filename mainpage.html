@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lifestyle Fashion Hub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="cart_sync.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    
+    .top-banner {
+      background: linear-gradient(90deg, #000000, #434343);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 15px 50px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a2a2a;
+      letter-spacing: 1px;
+    }
+    
+    .logo span {
+      color: #e8b4b8;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      color: #333;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .nav-btn:hover {
+      background-color: #e8b4b8;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .search-box {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: #e8b4b8;
+      width: 220px;
+    }
+    
+    body {
+      background-color: #E5E1DC;
+      color: #111;
+    }
+    .dropdown {
+      position: relative;
+    }
+    
+    .mega-menu {
+  display: none;
+  position: absolute;
+  top: 160%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 170px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+    .dropdown:hover .mega-menu {
+      display: flex;
+    }
+    
+    .mega-column {
+      flex: 1;
+      min-width: 100px;
+      margin-right: 20px;
+    }
+    
+    .mega-column h4 {
+      margin-bottom: 10px;
+      color: #2F2723;
+    }
+    
+    .mega-column a {
+      display: block;
+      text-decoration: none;
+      color: #807777;
+      margin: 4px 0;
+      font-size: 14px;
+    }
+    
+    .mega-column a:hover {
+      color: #000;
+      font-weight: bold;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+    
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+      opacity: 0.85;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 60px 20px;
+      color: #fff;
+    }
+    
+    .hero-content h1 {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .shop-btn {
+      background-color: white;
+      color: black;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .shop-btn:hover {
+      background-color: #6A584D;
+    }
+    
+    section {
+      padding: 50px 20px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: black;
+      margin-bottom: 20px;
+    }
+    
+    .product-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .product-item {
+      width: 30%;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 20px;
+    }
+    
+    .product-item p{
+      margin-top: 10px;
+    }
+    
+    .product-item img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    
+    .product-btn {
+      background-color: #2F2723;
+      color: white;
+      width: 250px;
+      padding: 10px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .product-btn:hover {
+      background-color: #2F2723;
+    }
+    
+    /* Special Offers */
+    .special-offers {
+      padding: 50px 20px;
+      background-color: #fff;
+    }
+    
+    .offer-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .offer-card img {
+      margin-left: 2px;
+      width: 900px;
+      height: 600px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    
+    .offer-details {
+      max-width: 400px;
+    }
+    
+    .offer-details h3 {
+      font-size: 30px;
+    }
+    
+    .offer-details p {
+      font-size: 26px;
+      margin: 20px 0;
+    }
+    
+    .offer-details .shop-btn {
+      background-color: #2F2723;
+      padding: 10px 20px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      width: 350px;
+      border-radius: 30px;
+    }
+    
+    .offer-details .shop-btn:hover {
+      background-color: #2F2723;
+    }
+    
+    /* Call to Action Section */
+    .cta-section {
+      background-color: #6C5A4B;
+      padding: 50px 20px;
+      color: white;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 28px;
+    }
+    
+    .cta-section form {
+      margin-top: 20px;
+    }
+    
+    .cta-section input {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 250px;
+    }
+    
+    .cta-section button {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    .cta-section button:hover {
+      background-color: white;
+      color: black;
+    }
+    
+    .footer {
+      background-color: #B2ADA9;
+      color: #333;
+      padding: 40px 20px 20px;
+      font-family: 'Arial', sans-serif;
+      margin-top: 50px;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    .footer-section {
+      flex: 1 1 200px;
+      margin: 20px;
+    }
+    
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #111;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #e91e63;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .social-icons a {
+      margin-right: 10px;
+      display: inline-block;
+    }
+    
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+    
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 4px;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeOut {
+      from {opacity: 1; transform: translateY(0);}
+      to {opacity: 0; transform: translateY(-20px);}
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner-->
+  <div class="top-banner">
+    Free shipping on orders over ₹1999 | Limited time offer
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Navbar  -->
+  <nav class="navbar">
+    <div class="logo">LifeStyle<span>.</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">HOME</a>
+      <a href="trythishitagain.html" class="nav-btn">MEN</a>
+      <a href="a1.html" class="nav-btn">WOMEN</a>
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="nav-btn">KIDS</a>
+
+        <div class="mega-menu">
+          <div class="mega-column">
+            <h4>Clothing</h4>
+            <a href="newarrival1.html">Tops</a>
+            <a href="dres.html">Dresses</a>
+            <a href="va1.html">Tshirts</a>
+            <a href="denim.html">Skirts</a>
+          </div>
+          <div class="mega-column">
+            <h4>Western Wear</h4>
+            <a href="shirts.html">Jumpsuits</a>
+            <a href="denim.html">Denims</a>
+            <a href="boys1.html">Co-ords</a>
+          </div>
+          <div class="mega-column">
+            <h4>Jeans & Trousers</h4>
+            <a href="denim.html">Jeans</a>
+            <a href="boys1.html">Trousers</a>
+            <a href="va1.html">viewall</a>
+          </div>
+          
+        </div>
+      </div>
+      <a href="sale1.html" class="nav-btn">SALE</a>
+      <input type="text" placeholder="Search..." class="search-box">
+      
+      <!-- New Cart and Wishlist Buttons -->
+      <div class="cart-wishlist-btns" style="display: flex; gap: 15px; margin-left: 15px;">
+        <a href="wishlist.html" class="nav-btn" style="position: relative; display: flex; align-items: center; gap: 5px;">
+          <i class="fa fa-heart"></i> 
+          <span>Wishlist</span>
+          <span class="wishlist-count" style="position: absolute; top: -5px; right: -5px; background-color: #e8b4b8; color: white; text-xs; rounded-full; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 50%;">0</span>
+        </a>
+        <a href="cart.php" class="nav-btn" style="position: relative; display: flex; align-items: center; gap: 5px;">
+          <i class="fa fa-shopping-bag"></i> 
+          <span>Cart</span>
+          <span class="cart-count" style="position: absolute; top: -5px; right: -5px; background-color: #2F2723; color: white; text-xs; rounded-full; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 50%;">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="New folder/video.mp4" type= "video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+  
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <h1>Kids's Fashion Collection</h1>
+      <p>Discover the latest trends in Kid's fashion</p>
+      <a href="va1.html"><button class="shop-btn">Shop Now</button></a>
+    </div>
+  </section>
+
+  <section class="trending-now">
+    <h2>Trending Now</h2>
+    <div class="product-grid">
+      <div class="product-item">
+        <a href="dres.html"><img src="New folder/trending1.jpg" alt="Trending 1" /></a>
+        <h4>Bow Organza Dress</h4>
+        <p>₹1099</p>
+        <button class="product-btn" onclick="addToCartAndRedirect('Bow Organza Dress', '1099', 'New folder/trending1.jpg')">Add to Cart</button>
+      </div>
+      <div class="product-item">
+        <a href="boys1.html"><img src="New folder/trending2.jpg" alt="Trending 2" /></a>
+        <h4>Co-ord set</h4>
+        <p>₹3999</p>
+        <button class="product-btn" onclick="addToCartAndRedirect('Co-ord set', '3999', 'New folder/trending2.jpg')">Add to Cart</button>
+      </div>
+      <div class="product-item">
+       <a href="denim.html"><img src="New folder/trending3.jpg" alt="Trending 3" /></a> 
+        <h4>Slim fit Jeans</h4>
+        <p>₹4499</p>
+        <button class="product-btn" onclick="addToCartAndRedirect('Slim fit Jeans', '4499', 'New folder/trending3.jpg')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+  
+  <div class="new-arrivals-section" style="position: relative; height: 600px; width: 100%; overflow: hidden;">
+    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+      <source src="New folder/video2.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    
+    <div style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));">
+      
+      <h2 style="
+        color: white;
+        font-weight: bold;
+        margin-bottom: 30px;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: 3px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">
+        NEW ARRIVALS
+      </h2>
+      
+      <a href="newarrival1.html" style="
+        background-color: white;
+        color: black;
+        padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none; 
+      display: inline-block;
+      font-size: 16px;">
+        SHOP NOW
+      </a>
+    </div>
+  </div>
+  <!--<a href="newarrival.html" style="text-decoration: none;">
+    <video autoplay muted loop playsinline class="">
+      <source src="video/menvd3.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div style="
+      background-image: url('menspic\ -\ Copy/new.jpg');
+      background-size: contain;
+      background-position: center;
+      height: 600px;
+      width: 100%;
+      margin-top: 0px;
+      cursor: pointer;">
+    </div>
+  </a>-->
+  
+  <!-- Special Offers Section -->
+  <section class="special-offers">
+    <h2>Special Offers</h2>
+    <div class="offer-card">
+      <img src="New folder/sale2.jpg" alt="Special Offer" />
+      <div class="offer-details">
+        <h3>Up to 50% Off on Tops</h3>
+        <p>Limited time offer. Shop now and save big on the latest styles!</p>
+        <a href="Shirts.html"><button class="shop-btn">Shop Now</button></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Stay Updated with the Latest Trends</h2>
+      <p>Sign up for our newsletter and never miss a sale!</p>
+      <form action="#">
+        <input type="email" placeholder="Enter your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About LifeStyle</h4>
+        <p>Your go-to destination for stylish and affordable fashion. Discover trends, explore collections, and express your individuality with LifeStyle.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="men.html">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Kids</a></li>
+          <li><a href="#">Home & Living</a></li>
+          <li><a href="#">Beauty</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/"><img src="images/fb.jpg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="images/insta.jpg" alt="Instagram" /></a>
+          <a href="https://x.com/i/flow/login?lang=en"><img src="images/twi.png" alt="Twitter" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 LifeStyle Fashion. All rights reserved.</p>
+    </div>
+  </footer>  
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update cart count on page load
+      updateNavCounts();
+      
+      // Setup toast functionality
+      const toast = document.getElementById('toast');
+      
+      // Function to show toast message
+      function showToast(message) {
+        toast.textContent = message;
+        toast.style.display = 'block';
+        
+        // Hide toast after 3 seconds
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 3000);
+      }
+    });
+
+    // Function to handle add to cart button clicks
+    function addToCartAndRedirect(productName, productPrice, productImage = '') {
+      // Create form data to send to the API
+      const formData = new FormData();
+      formData.append('action', 'add');
+      formData.append('product_id', productName); // Using productName as a unique identifier
+      formData.append('product_name', productName);
+      formData.append('price', productPrice);
+      formData.append('image', productImage);
+      formData.append('quantity', 1);
+      
+      // Show a quick notification
+      showToast('Adding to cart...');
+      
+      // Make an AJAX request to add the item to the cart
+      fetch('add_to_cart_api.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          // Show success message
+          showToast('Successfully added to cart!');
+          
+          // Update cart count
+          const cartCountElements = document.querySelectorAll('.cart-count');
+          cartCountElements.forEach(element => {
+            element.textContent = data.cart_count || 0;
+            element.style.display = data.cart_count > 0 ? 'flex' : 'none';
+          });
+          
+          // Redirect to cart page after a short delay
+          setTimeout(() => {
+            window.location.href = 'cart.php';
+          }, 1500);
+        } else {
+          showToast('Failed to add item to cart: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error adding to cart:', error);
+        showToast('An error occurred while adding to cart. Please try again.');
+      });
+    }
+    
+    // Function to show toast message
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      
+      // Hide toast after 3 seconds
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    // Initialize wishlist array from local storage
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    // Add to wishlist function
+    function addToWishlist(name, price, image) {
+      // Check if item already exists in wishlist
+      const existingItem = wishlist.find(item => item.name === name);
+      
+      if (!existingItem) {
+        wishlist.push({
+          name: name,
+          price: price,
+          image: image
+        });
+        
+        // Save to localStorage
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        
+        // Update wishlist count
+        const wishlistCountElements = document.querySelectorAll('.wishlist-count');
+        wishlistCountElements.forEach(element => {
+          element.textContent = wishlist.length;
+          element.style.display = wishlist.length > 0 ? 'flex' : 'none';
+        });
+        
+        // Show confirmation
+        showToast('Item added to wishlist!');
+      } else {
+        showToast('Item is already in your wishlist!');
+      }
+    }
+  </script>
+</body>
+</html>

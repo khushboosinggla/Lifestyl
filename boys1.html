@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)file:///C:/Users/PARVEEN/Downloads/website2/website/viewall.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="longkurta.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>women's Fashion</title>
+  <style>
+   /* Add to Cart button styling */
+   .product-card button {
+      background-color: #2F2723;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s, transform 0.3s;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    
+    .product-card button:hover {
+      background-color: #4a3f38;
+      transform: translateY(-2px);
+    }
+
+    /* Product actions container */
+    .product-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .product-actions button {
+      margin-top: 0;
+    }
+
+    .add-to-cart {
+      flex: 1;
+    }
+
+    .add-to-wishlist {
+      background-color: white !important;
+      color: #2F2723 !important;
+      border: 1px solid #2F2723 !important;
+      width: 40px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .add-to-wishlist:hover {
+      background-color: #ffebee !important;
+      color: #e57373 !important;
+      border-color: #e57373 !important;
+    }
+
+    .add-to-wishlist i {
+      font-size: 18px;
+    }
+    
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 4px;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeOut {
+      from {opacity: 1; transform: translateY(0);}
+      to {opacity: 0; transform: translateY(-20px);}
+    }
+
+    /* New Navbar Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    
+    .top-banner {
+      background: linear-gradient(90deg, #000000, #434343);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .sidebar {
+  background-color: #483e36;
+  color: white;
+  padding: 20px;
+  width: 300px; /* Set a fixed width */
+  min-width: 300px; /* Prevent it from shrinking */
+  flex-shrink: 0; /* Don't allow flexbox to shrink it */
+  /* Keep all your other existing sidebar styles */
+}
+
+.sidebar h3 {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 5px;
+}
+.container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 14px;
+}
+
+.sidebar a:hover {
+  color: #e8b4b8;
+  text-decoration: underline;
+}
+.sidebar,
+.sidebar h3,
+.sidebar ul,
+.sidebar li,
+.sidebar a {
+  color: white !important;
+}
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 15px 50px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a2a2a;
+      letter-spacing: 1px;
+    }
+    
+    .logo span {
+      color: #e8b4b8;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      color: #333;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .nav-btn:hover {
+      background-color: #e8b4b8;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .search-box {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: #e8b4b8;
+      width: 220px;
+    }
+    .dropdown {
+      position: relative;
+    }
+    
+    .mega-menu {
+  display: none;
+  position: absolute;
+  top: 160%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 170px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+    .dropdown:hover .mega-menu {
+      display: flex;
+    }
+    
+    .mega-column {
+      flex: 1;
+      min-width: 100px;
+      margin-right: 20px;
+    }
+    
+    .mega-column h4 {
+      margin-bottom: 10px;
+      color: #2F2723;
+    }
+    
+    .mega-column a {
+      display: block;
+      text-decoration: none;
+      color: #807777;
+      margin: 4px 0;
+      font-size: 14px;
+    }
+    
+    .mega-column a:hover {
+      color: #000;
+      font-weight: bold;
+    }
+    /* Product card styling */
+    .product-card {
+      border: 1px solid #eee;
+      padding: 15px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      text-align: center;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    
+    .product-card h3 {
+      margin: 10px 0 5px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .product-card p {
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .footer{
+      background-color: #E5E1DC;
+    }    .footer{
+      background-color: #E5E1DC;
+    }
+    .footer {
+      background-color: #B2ADA9;
+      color: #333;
+      padding: 40px 20px 20px;
+      font-family: 'Arial', sans-serif;
+      margin-top: 50px;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    .footer-section {
+      flex: 1 1 200px;
+      margin: 20px;
+    }
+    
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #111;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #e91e63;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .social-icons a {
+      margin-right: 10px;
+      display: inline-block;
+    }
+    
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+    
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+<!-- <style type="text/css" id="operaUserStyle"></style></head> -->
+
+<body>
+  <!-- Top Banner-->
+  <div class="top-banner">
+    Free shipping on orders over ₹1999 | Limited time offer
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Navbar  -->
+  <nav class="navbar">
+    <div class="logo">LifeStyle<span>.</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">HOME</a>
+      <a href="trythishitagain.html" class="nav-btn">MEN</a>
+      <a href="a1.html" class="nav-btn">WOMEN</a> 
+      <div class="dropdown">
+        <a href="mainpage.html" class="nav-btn">KIDS</a>
+        <div class="mega-menu">
+          <div class="mega-column">
+            <h4>Clothing</h4>
+            <a href="newarrival.html">Tops</a>
+            <a href="dresses.html">Dresses</a>
+            <a href="va.html">Tshirts</a>
+            <a href="denims.html">Skirts</a>
+          </div>
+          <div class="mega-column">
+            <h4>Western Wear</h4>
+            <a href="shirts.html">Jumpsuits</a>
+            <a href="denims.html">Denims</a>
+            <a href="boys1.html">Co-ords</a>
+          </div>
+          <div class="mega-column">
+            <h4>Jeans & Trousers</h4>
+            <a href="denims.html">Jeans</a>
+            <a href="boys1.html">Trousers</a>
+            <a href="va.html">viewall</a>
+          </div>
+  
+        </div>
+      </div>
+      <a href="sale1.html" class="nav-btn">SALE</a>
+      <input type="text" placeholder="Search..." class="search-box">
+      
+      <!-- New Cart and Wishlist Buttons -->
+      <div class="cart-wishlist-btns" style="display: flex; gap: 15px; margin-left: 15px;">
+        <a href="wishlist.html" class="nav-btn" style="position: relative; display: flex; align-items: center; gap: 5px;">
+          <i class="fa fa-heart"></i> 
+          <span>Wishlist</span>
+          <span class="wishlist-count" style="position: absolute; top: -5px; right: -5px; background-color: #e8b4b8; color: white; text-xs; rounded-full; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 50%;">0</span>
+        </a>
+        <a href="cart.php" class="nav-btn" style="position: relative; display: flex; align-items: center; gap: 5px;">
+          <i class="fa fa-shopping-bag"></i> 
+          <span>Cart</span>
+          <span class="cart-count" style="position: absolute; top: -5px; right: -5px; background-color: #2F2723; color: white; text-xs; rounded-full; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 50%;">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Offers</h3>
+      <ul>
+        <li><a href="dresses.html">Trousers starting 999</a></li>
+        <li><a href="Shirts.html">ActiveWear from ₹999</a></li>
+      </ul>
+
+      <h3>New In</h3>
+      <ul>
+        <li><a href="va.html">View All</a></li>
+        <li><a href="boys1.html">Clothes</a></li>
+        <li><a href="Shirts.html">Sport</a></li>
+      </ul>
+
+      <h3>Trending Now</h3>
+      <ul>
+        <li><a href="denim.html">Edits</a></li>
+        <li><a href="dresses.html">Trending Now</a></li>
+      </ul>
+
+      <h3>Clothing</h3>
+      <ul>
+        <li><a href="va.html">Tops</a></li>
+        <li><a href="dresses.html">Dresses</a></li>
+        <li><a href="denim.html">Trousers</a></li>
+        <li><a href="newarrival.html">Skirts</a></li>
+      </ul>
+    </aside>
+
+
+    
+
+    <div class="product-grid">
+      <div class="product-card">
+        <a href="product15.html?id=1" target="_blank">
+          <img src="New folder/t1.jpg" alt="prd1">
+        </a>
+        <h3>Cotton Co-ord set</h3>
+        <p>₹1990</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=2" target="_blank">
+
+          <img src="New folder/c1.jpg" alt="Slim Fit Jeans">
+        </a>
+        <h3>Graphic T-shirt</h3>
+        <p>₹2050</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=3" target="_blank">
+          <img src="New folder/t2.jpg" alt="Graphic T-Shirt">
+        </a>
+        <h3>Linen Tops</h3>
+        <p>₹9810</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=4" target="_blank">
+          <img src="New folder/c3.jpg" alt="prd1">
+        </a>
+        <h3>Denim jeans</h3>
+        <p>₹1490</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=5" target="_blank">
+          <img src="New folder/t3.jpg" alt="Slim Fit Jeans">
+        </a>
+        <h3>Plaid Flannel</h3>
+        <p>₹1790</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=6" target="_blank">
+          <img src="New folder/t5.jpg" alt="Graphic T-Shirt">
+        </a>
+        <h3>Seersucker Summer</h3>
+        <p>₹1341</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=7" target="_blank">
+          <img src="New folder/c4.jpg" alt="prd1">
+        </a>
+        <h3>Herringbone Textured</h3>
+        <p>₹1832</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=8" target="_blank">
+          <img src="New folder/t6.jpg" alt="Slim Fit Jeans">
+        </a>
+        <h3>Twill Work Shirt</h3>
+        <p>₹1590</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=9" target="_blank">
+          <img src="New folder/t7.jpg" alt="Graphic T-Shirt">
+        </a>
+        <h3>Poplin Dress Shirt</h3>
+        <p>₹1611</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=11" target="_blank">
+          <img src="New folder/b3.jpg" alt="prd1">
+        </a>
+        <h3>Linen-Cotton Blend</h3>
+        <p>₹2390</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=12" target="_blank">
+          <img src="New folder/b5.jpg" alt="Slim Fit Jeans">
+        </a>
+        <h3>Madras Plaid</h3>
+        <p>₹2090</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=13" target="_blank">
+          <img src="New folder/b4.jpg" alt="Graphic T-Shirt">
+        </a>
+        <h3> Western Shirt</h3>
+        <p>₹1850</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=14" target="_blank">
+          <img src="New folder/t5.jpg" alt="prd1">
+        </a>
+        <h3>Oxford Pinpoint</h3>
+        <p>₹1890</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=15" target="_blank">
+          <img src="New folder/t3.jpg" alt="Slim Fit Jeans">
+        </a>
+        <h3>Twill Utility</h3>
+        <p>₹1690</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=16" target="_blank">
+          <img src="New folder/c4.jpg" alt="Graphic T-Shirt">
+        </a>
+        <h3>Herringbone Casual</h3>
+        <p>₹1430</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="product15.html?id=17" target="_blank">
+          <img src="New folder/img1.jpg" alt="prd1">
+        </a>
+        <h3>Chambray Workshirt</h3>
+        <p>₹1900</p>
+        <div class="product-actions">
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="add-to-wishlist"><i class="fa fa-heart"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About LifeStyle</h4>
+        <p>Your go-to destination for stylish and affordable fashion. Discover trends, explore collections, and express your individuality with LifeStyle.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="men.html">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Kids</a></li>
+          <li><a href="#">Home & Living</a></li>
+          <li><a href="beauty.html">Beauty</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/"><img src="images/fb.jpg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="images/insta.jpg" alt="Instagram" /></a>
+          <a href="https://x.com/i/flow/login?lang=en"><img src="images/twi.png" alt="Twitter" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 LifeStyle Fashion. All rights reserved.</p>
+    </div>
+  </footer>  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all product cards
+      const productCards = document.querySelectorAll('.product-card');
+      const toast = document.getElementById('toast');
+      const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+
+      // Update the cart count in the header
+      function updateCartCount() {
+        fetch('add_to_cart_api.php')
+          .then(response => response.json())
+          .then(data => {
+            if(data.success) {
+              // Find the cart count element and update it
+              const cartCountElement = document.querySelector('.cart-count');
+              if(cartCountElement) {
+                cartCountElement.textContent = data.cartCount;
+              }
+            }
+          })
+          .catch(error => console.error('Error updating cart count:', error));
+      }
+
+      // Show toast notification
+      function showToast(message, isRedirect = false) {
+        toast.textContent = message;
+        toast.style.display = 'block';
+        
+        setTimeout(() => {
+          toast.style.display = 'none';
+          // Redirect to cart page after toast if needed
+          if (isRedirect) {
+            window.location.href = 'cart.php';
+          }
+        }, isRedirect ? 1000 : 3000);
+      }
+
+      // Initialize cart count on page load
+      updateCartCount();
+
+      // Process each product card
+      productCards.forEach((card, index) => {
+        const productName = card.querySelector('h3').textContent;
+        const priceText = card.querySelector('p').textContent;
+        const price = parseFloat(priceText.replace('₹', ''));
+        const imageUrl = card.querySelector('img').src;
+        const productId = index + 200; // Generate a simple ID based on index, using 200+ to avoid conflicts
+
+        // Set up "Add to Cart" button
+        const addToCartBtn = card.querySelector('.add-to-cart');
+        addToCartBtn.addEventListener('click', function(event) {
+          // Prevent default action (important for forms)
+          event.preventDefault();
+          
+          // Create JSON data with the correct parameter names expected by the API
+          const data = {
+            action: 'add',
+            product_id: productId,
+            product_name: productName,
+            price: price,
+            image: imageUrl,
+            quantity: 1
+          };
+
+          // Add spinner or disable button to show loading
+          addToCartBtn.disabled = true;
+          addToCartBtn.innerHTML = 'Adding...';
+
+          fetch('add_to_cart_api.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Re-enable button
+            addToCartBtn.disabled = false;
+            addToCartBtn.innerHTML = 'Add to Cart';
+            
+            if(data.success) {
+              showToast('Added to cart: ' + productName + '. Redirecting to cart...', true);
+              updateCartCount();
+            } else {
+              showToast('Error: ' + (data.message || 'Failed to add to cart'));
+              console.log('Cart error response:', data);
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            addToCartBtn.disabled = false;
+            addToCartBtn.innerHTML = 'Add to Cart';
+            showToast('Error adding to cart. Please try again.');
+          });
+        });
+
+        // Set up wishlist button
+        const wishlistBtn = card.querySelector('.add-to-wishlist');
+        
+        // Check if this product is already in the wishlist
+        const isInWishlist = wishlistItems.some(item => item.id === productId);
+        if (isInWishlist) {
+          wishlistBtn.innerHTML = '<i class="fa fa-heart" style="color: #e57373;"></i>';
+          wishlistBtn.classList.add('in-wishlist');
+        }
+
+        wishlistBtn.addEventListener('click', function() {
+          const isAlreadyInWishlist = wishlistBtn.classList.contains('in-wishlist');
+          
+          if (isAlreadyInWishlist) {
+            // Remove from wishlist
+            const updatedWishlist = wishlistItems.filter(item => item.id !== productId);
+            localStorage.setItem('wishlistItems', JSON.stringify(updatedWishlist));
+            
+            wishlistBtn.innerHTML = '<i class="fa fa-heart"></i>';
+            wishlistBtn.classList.remove('in-wishlist');
+            showToast('Removed from wishlist: ' + productName);
+          } else {
+            // Add to wishlist
+            const wishlistItem = {
+              id: productId,
+              name: productName,
+              price: price,
+              image: imageUrl
+            };
+            
+            wishlistItems.push(wishlistItem);
+            localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
+            
+            wishlistBtn.innerHTML = '<i class="fa fa-heart" style="color: #e57373;"></i>';
+            wishlistBtn.classList.add('in-wishlist');
+            showToast('Added to wishlist: ' + productName);
+          }
+          
+          // Update wishlist count
+          const wishlistCount = document.querySelector('.wishlist-count');
+          if (wishlistCount) {
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            wishlistCount.textContent = wishlistItems.length;
+          }
+        });
+      });
+      
+      // Update wishlist count on page load
+      const wishlistCount = document.querySelector('.wishlist-count');
+      if (wishlistCount) {
+        wishlistCount.textContent = wishlistItems.length;
+      }
+    });
+  </script>
+
+</body></html>
+```

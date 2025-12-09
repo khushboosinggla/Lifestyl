@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Page</title>
+  <link rel="stylesheet" href="prdoct1.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+   .product-card button {
+      background-color: #2F2723;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    
+    .product-card button:hover {
+      background-color: #4a3f38;
+      transform: translateY(-2px);
+    }
+
+    /* New Navbar Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    
+    .top-banner {
+      background: linear-gradient(90deg, #000000, #434343);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 15px 50px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a2a2a;
+      letter-spacing: 1px;
+    }
+    
+    .logo span {
+      color: #2a2a2a;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      color: #333;
+      text-decoration: none;
+      border-radius: 2px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .nav-btn:hover {
+      background-color: #e8b4b8;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .search-box {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: #e8b4b8;
+      width: 220px;
+    }
+  
+  </style>
+</head>
+<body class="bg-white min-h-screen">
+
+  <!-- Header -->
+  <div class="top-banner">
+    FREE SHIPPING ON ORDERS OVER ₹999 | USE CODE: FREESHIP
+  </div>
+  <nav class="navbar">
+    <div class="logo">LIFE<span>STYLE</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">HOME</a>
+      
+      <div class="dropdown">
+        <a href="a1.html" class="nav-btn">WOMEN</a>
+        <div class="mega-menu">
+          <div class="mega-column">
+            <h4>Clothing</h4>
+            <a href="extra.html">Tops</a>
+            <a href="dresses.html">Dresses</a>
+            <a href="extra.html">Sarees</a>
+            <a href="extra.html">Skirts</a>
+          </div>
+          <div class="mega-column">
+            <h4>Western Wear</h4>
+            <a href="blazer.html">Jumpsuits</a>
+            <a href="blazer.html">Blazers</a>
+            <a href="blazer.html">Co-ords</a>
+          </div>
+          <div class="mega-column">
+            <h4>Kurtas</h4>
+            <a href="longkurta.html">Long Kurtas</a>
+            <a href="longkurta.html">Short Kurtas</a>
+            <a href="longkurta.html">Kurta Sets</a>
+          </div>
+          <div class="mega-column">
+            <h4>Jeans & Trousers</h4>
+            <a href="jeans.html">Jeans</a>
+            <a href="jeans.html">Trousers</a>
+            <a href="jeans.html">Palazzos</a>
+          </div>
+          <div class="mega-column">
+            <h4>Beauty</h4>
+            <a href="BM.html">Lipsticks</a>
+            <a href="BM.html">Skincare</a>
+            <a href="BM.html">Fragrance</a>
+          </div>
+        </div>
+      </div>
+      <a href="trythishitagain.html" class="nav-btn">MEN</a>
+      <a href="mainpage.html" class="nav-btn">KIDS</a>
+      <a href="sale1.html" class="nav-btn">SALE</a>
+      <input type="text" placeholder="Search..." class="search-box">
+      <a href="lg.html" class="nav-btn"><i class="ri-user-line"></i></a>
+      <a href="wish.html" class="nav-btn"><i class="ri-heart-line"></i></a>
+      <a href="#" class="nav-btn"><i class="ri-shopping-bag-line"></i></a>
+    </div>
+  </nav>
+<!-- Top Section: Images + Product Info Side by Side -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto mt-10">
+  <!-- Images -->
+  <div class="flex gap-6 items-start w-full">
+    <div class="flex-1 max-w-[900px] ">
+      <div class="relative">
+        <img id="product-image" src="" alt="Main Product" class="w-full rounded-lg object-cover" style="height: 650px;">
+        <div class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">SALE!</div>
+      </div>
+    </div>
+    <div class="w-[250px]  space-y-4">
+      <img id="small-product-image" src="" alt="Small Product" class="w-full rounded-md border border-gray-300 cursor-pointer" style="height: 250px; object-fit: cover;">
+    </div>
+  </div>
+
+  
+
+  <!-- Product Info + Description (RIGHT side) -->
+  <div>
+    <h1 id="product-name" class="text-3xl font-bold mb-4">Product Name</h1>
+
+    <div class="flex items-center mb-4">
+      <div class="star-rating flex text-yellow-500 text-xl">
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-fill"></i>
+        <i class="ri-star-line"></i>
+      </div>
+      <span class="text-sm text-gray-500 ml-2">(3 reviews)</span>
+    </div>
+
+    <div class="mb-4">
+      <span id="product-price" class="text-2xl font-bold text-gray-900">₹0</span>
+      <span id="product-mrp" class="text-sm text-gray-500 line-through ml-2">₹0</span>
+    </div>
+
+    <div class="mb-6">
+      <label class="block text-sm font-medium text-gray-700 mb-2">SIZE</label>
+      <select class="w-full border border-gray-300 px-4 py-2 rounded">
+        <option>Choose an option</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+      <input type="number" value="1" min="1" class="w-16 border border-gray-300 px-4 py-2 rounded">
+      <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">ADD TO CART</button>
+      <div class="flex items-center gap-4 mt--2"
+      class="w-30 border border-gray-300 px-4 py-2 rounded">
+     <button class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">BUY NOW</button>
+   </div>
+    </div>
+
+    <div class="mb-6">
+      <a href="#" class="text-sm text-gray-500 hover:underline">Add to Wishlist</a>
+    </div>
+
+    <!-- DESCRIPTION BELOW CART AREA -->
+    <div class="mt-8">
+      <h2 class="text-xl font-bold mb-2">Description</h2>
+      <p id="product-description" class="text-gray-700 leading-relaxed mb-4 ">
+        Regular fit linen shirt. Featuring a lapel collar, long sleeves with buttoned cuffs and a button-up front.
+      </p>
+
+      <h2 class="text-xl font-bold mb-2">Product Details</h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-1 mb-4">
+        <li>Material: 100% Cotton</li>
+        <li>Care: Machine wash cold</li>
+        <li>Fit: Relaxed fit</li>
+      </ul>
+
+      <h2 class="text-xl font-bold mb-2">Delivery and Returns</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Free delivery on orders over ₹999. Returns accepted within 15 days of purchase.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const products = [
+  {
+  id: 1,
+  name: "Sports Jacket",
+  price: "₹1432",
+  image: "longkurta/a1.webp",
+  description: "Ethnic Wear Relaxed Fit",
+  longDescription: `
+  <div class="long-description">
+          <h3>Product Description</h3>
+          <ul>
+            <li>Color: light blue</li>
+            <li>Material: 100% Cotton (Soft & Breathable)</li>
+            <li>Fit: cord-set</li>  
+            <li>Print:blue printed leaves</li>
+            <li>Neckline: High Notch Neckline</li>
+            <li>Sleeves: fullSleevele</li>
+          </ul>
+        </div>
+
+  `,
+  related: [8, 9, 11,12,13,2]
+},
+    {
+      id: 2,
+      name: "Sports T-Shirt ",
+      price: "1192",
+      image: "longkurta/a2.webp",
+      description: "Beige Sanganeri Cotton Kurta with Embroidered Neckline Detail",
+      longDescription: `
+  <div class="long-description">
+    <h3>Product Description</h3>
+    <ul>
+      <li>Color: Light Pink</li>
+      <li>Material: Ribbed Knit (Soft & Stretchable)</li>
+      <li>Fit: Slim Fit</li>  
+      <li>Details: Satin Ribbon Bow Accents on Front</li>
+      <li>Neckline: Crew Neck</li>
+      <li>Sleeves: Full Sleeves</li>
+    </ul>
+  </div>
+`,
+
+      related: [9,11,12,3,4,5]
+    },
+    {
+      id: 3,
+      name: "Sports T-Shirt",
+      price: "₹981",
+      image: "longkurta/a3.webp",
+      description: "Fitted tank top, a sweet pink ribbed tank with a button detail.",
+      longDescription: `
+  <div class="long-description">
+    <h3>Product Description</h3>
+    <ul>
+      <li>Color: Vibrant Red</li>
+      <li>Material: Lightweight Textured Fabric</li>
+      <li>Fit: Flowy & Comfortable</li>  
+      <li>Details: Adjustable Tie-Up Halter Neck & Waist</li>
+      <li>Neckline: Deep V-Neck</li>
+      <li>Sleeves: Sleeveless</li>
+    </ul>
+  </div>
+`,
+
+      related: [11,12,8,7,6,5]
+    },
+    {
+      id: 4,
+      name: "Sports Dress",
+      price: "₹1490",
+      image: "longkurta/a4.webp",
+      description: "Halter top, a vibrant red tie-front top with a breezy feel.",
+      longDescription: `
+  <div class="long-description">
+    <h3>Product Description</h3>
+    <ul>
+      <li>Color: Dark Red</li>
+      <li>Material: Cotton Blend (Soft & Stretchable)</li>
+      <li>Fit: Slim Crop Fit</li>  
+      <li>Details: Button-Front Detail</li>
+      <li>Neckline: Scoop Neck</li>
+      <li>Sleeves: Sleeveless</li>
+    </ul>
+  </div>
+`,
+
+      related: [11,12,5,3,1,2]
+    },
+    {
+      id: 5,
+      name: "Sports Set",
+      price: "₹1790",
+      image: "longkurta/a5.webp",
+      description: "Cropped blouse, a charming red plaid top with lace trim and tie front.",
+      longDescription: `
+  <div class="long-description">
+    <h3>Product Description</h3>
+    <ul>
+      <li>Color: Red & Beige Gingham Check</li>
+      <li>Material: Soft Woven Fabric</li>
+      <li>Fit: Slim Fit with Cropped Length</li>  
+      <li>Details: Front Lace-Up Tie, Frill Lace Trim</li>
+      <li>Neckline: Scoop Neck with Ruffle Detail</li>
+      <li>Sleeves: Puff Short Sleeves with Elastic Cuffs</li>
+    </ul>
+  </div>
+`,
+
+      related: [12, 1, 11,9,11,4]
+    },
+    {
+      id: 6,
+      name: "Sports T-Shirt",
+      price: "₹1341",
+      image: "longkurta/a6.webp",
+      description: "Halter top, a breezy white tie-front top with a textured finish.",
+      longDescription: `
+  <div class="long-description">
+    <h3>Product Description</h3>
+    <ul>
+      <li>Color: Off-White / Ivory</li>
+      <li>Material: Textured Woven Fabric</li>
+      <li>Fit: Flowy & Flattering</li>  
+      <li>Details: Ruched Bust with Tie-Up Front</li>
+      <li>Neckline: Strapless with Halter Tie</li>
+      <li>Sleeves: Sleeveless</li>
+    </ul>
+  </div>
+`,
+
+      related: [11, 12,13,1,2,9]
+    },
+    {
+      id: 7,
+      name: "Patterend Sport Leggings",
+      price: "₹1832",
+      image: "longkurta/a7.webp",
+      description: "Sheer blouse, a romantic black floral top with a tie front and flared sleeves.",
+      longDescription: `
+  <div class="long-description">
+    <h3>Product Description</h3>
+    <ul>
+      <li>Color: Black</li>
+      <li>Material: Sheer Mesh with Velvet Floral Embroidery</li>
+      <li>Fit: Slim Fit</li>  
+      <li>Details: Tie-Front Closure, Scalloped Edges</li>
+      <li>Neckline: Deep V-Neck</li>
+      <li>Sleeves: Long Flared Sleeves</li>
+    </ul>
+  </div>
+`,
+
+      related: [11, 13,12,5,6,8]
+    },
+    {
+      id: 8,
+      name: "Sport Set",
+      price: "₹1590",
+      image: "longkurta/a8.webp",
+      description: "Graphic tee, a classic black short-sleeve with a sweet pink bow detail",
+      longDescription: `
+  <div class="long-description">
+    <h3>Product Description</h3>
+    <ul>
+      <li>Color: Black</li>
+      <li>Material: Cotton Blend (Stretchable & Soft)</li>
+      <li>Fit: Slim Fit / Crop Length</li>  
+      <li>Details: Pink Bow Print on Chest</li>
+      <li>Neckline: Crew Neck</li>
+      <li>Sleeves: Short Sleeves</li>
+    </ul>
+  </div>
+`,
+
+      related: [4, 5,12,13,6,7]
+    },
+    {
+      id: 9,
+      name: "Sport Jacket",
+      price: "₹1611",
+      image: "longkurta/a9.webp",
+      description: "Floral blouse, a delicate sheer top with a square neck and flared sleeves.",
+      longDescription: `
+ <div class="long-description">
+<h3>Product Description</h3>
+<ul>
+  <li>Color: White with pink floral print</li>,
+ <li>Material: Likely lightweight and possibly sheer fabric</li>,
+  <li>Fit: Cropped</li> ,
+<li>Details: Square neckline, Gathered or ruched bodice</li>,
+<li>Neckline: Square neckline</li>,
+ <li>Sleeves: Long, flared sleeves</li>
+</ul>
+</div>
+`,
+      related: [11, 2,8,1,2,3]
+    },
+    {
+      id: 11,
+      name: "Cord-Set",
+      price: "₹2390",
+      image: "longkurta/a11.webp",
+      description: "Drape neck top, a chic black long-sleeve with an asymmetrical hem.",
+      longDescription: `
+ <div class="long-description">
+ <h3>Product Description</h3>
+ <ul>
+ <li>Color: Black</li>,
+ <li>Material: Likely soft knit</li>,
+ <li>Fit: Slim fit</li> ,
+ <li>Details: Draped neckline</li>,
+ <li>Neckline: Cowl or draped neckline</li>,
+ <li>Sleeves: Long sleeves</li>
+ </ul>
+ </div>
+`,
+      related: [8, 7,6,5,4,3]
+    },
+    {
+      id: 12,
+      name: "Cord-Set",
+      price: "₹2090",
+      image: "longkurta/a12.webp",
+      description: "Square neck top, a stylish burgundy long-sleeve with subtle side ruching.",
+      longDescription: `
+ <div class="long-description">
+ <h3>Product Description</h3>
+ <ul>
+ <li>Color: Maroon</li>,
+ <li>Material: Likely soft and stretchable fabric</li>,
+ <li>Fit: Slim fit</li> ,
+ <li>Details: Ruched or gathered detail on the side</li>,
+ <li>Neckline: Square neckline</li>,
+ <li>Sleeves: Long sleeves</li>
+ </ul>
+ </div>
+`,
+      related: [5, 4,3,13,1,2]
+    },
+    {
+      id: 13,
+      name: "Cord-Set",
+      price: "₹1850",
+      image: "longkurta/a13.webp",
+      description: "Lace-up blouse, a textured off-white top with a collared neckline and front ties.",
+      longDescription: `
+ <div class="long-description">
+ <h3>Product Description</h3>
+ <ul>
+ <li>Color: Off-white or Cream</li>,
+ <li>Material: Likely lightweight woven fabric with texture</li>,
+ <li>Fit: Fitted or slim fit</li> ,
+ <li>Details: Front lace-up detail, Collared neckline</li>,
+ <li>Neckline: V-neck with collar</li>,
+ <li>Sleeves: Long sleeves</li>
+ </ul>
+ </div>
+`,
+      related: [2, 1,11,4,5,6]
+    },
+   
+  ];
+
+  const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+const product = products[id-1];
+
+if (product) {
+  document.getElementById("product-name").textContent = product.name;
+  document.getElementById("product-price").textContent = product.price;
+  document.getElementById("product-mrp").textContent = product.mrp;
+  document.getElementById("product-description").textContent = product.description;
+  document.getElementById("product-image").src = product.image;
+  document.getElementById("small-product-image").src = product.image; // same image
+} else {
+  document.querySelector("body").innerHTML = "<h1 class='text-center mt-10 text-xl'>Product not found.</h1>";
+}</script>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h4>About LifeStyle</h4>
+      <p>Your go-to destination for stylish and affordable fashion. Discover trends, explore collections, and express your individuality with LifeStyle.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Kids</a></li>
+        <li><a href="#">Home & Living</a></li>
+        <li><a href="beauty.html">Beauty</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Shipping</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><img src="images/fb.jpg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="images/insta.jpg" alt="Instagram" /></a>
+          <a href="https://x.com/i/flow/login?lang=en"><img src="images/twi.png" alt="Twitter" /></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 LifeStyle Fashion. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

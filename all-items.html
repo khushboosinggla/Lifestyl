@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Items - LIFE STYLE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="cart.js"></script>
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .product-card {
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-card .overlay {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .product-card:hover .overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <header class="border-b bg-white">
+    <div class="container mx-auto px-4">
+      <div class="h-16 flex items-center justify-between">
+        <h1 class="text-2xl font-bold"><a href="index.html">LIFE STYLE</a></h1>
+        <div class="flex-1 max-w-xl mx-8">
+          <div class="relative">
+            <input type="text" placeholder="Search here..." class="w-full h-10 pl-10 pr-4 rounded-full border border-gray-200 focus:outline-none focus:border-primary">
+            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="relative group cursor-pointer">
+            <div class="flex items-center gap-1">
+              <a href="help.html" class="flex items-center gap-1">
+                <i class="ri-customer-service-line text-xl"></i>
+                <span>24/7 HELP</span>
+                <i class="ri-arrow-down-s-line"></i>
+              </a>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 cursor-pointer">
+            <a href="account.html" class="flex items-center gap-1">
+              <i class="ri-user-line text-xl"></i>
+              <span>YOUR ACCOUNT</span>
+            </a>
+          </div>
+          <div class="flex items-center gap-1 cursor-pointer">
+            <a href="cart.php" class="flex items-center gap-1">
+              <i class="ri-heart-line text-xl"></i>
+              <span>WISHLIST</span>
+            </a>
+          </div>
+          <div class="relative cursor-pointer">
+            <a href="add-to-cart.php">
+              <i class="ri-shopping-bag-line text-xl"></i>
+              <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <nav class="h-10 flex items-center justify-center">
+        <ul class="flex gap-8">
+          <li><a href="index.html" class="hover:text-primary">HOME</a></li>
+          <li><a href="all-items.html" class="hover:text-primary font-medium">SHOP</a></li>
+          <li><a href="#" class="hover:text-primary">WOMEN</a></li>
+          <li><a href="#" class="hover:text-primary">MEN</a></li>
+          <li><a href="#" class="hover:text-primary">KIDS</a></li>
+          <li><a href="#sale" class="hover:text-primary">SALE</a></li>
+          <li><a href="aboutus.html" class="hover:text-primary">ABOUT US</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row gap-6">
+      <!-- Sidebar Filters -->
+      <div class="md:w-1/4 lg:w-1/5">
+        <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+          <h3 class="font-semibold text-lg mb-3">Categories</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-primary">All Categories</a></li>
+            <li><a href="#" class="hover:text-primary">Women's Collection</a></li>
+            <li><a href="#" class="hover:text-primary">Men's Collection</a></li>
+            <li><a href="#" class="hover:text-primary">Kids' Collection</a></li>
+            <li><a href="#" class="hover:text-primary">Accessories</a></li>
+            <li><a href="#" class="hover:text-primary">Footwear</a></li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+          <h3 class="font-semibold text-lg mb-3">Filter by Price</h3>
+          <div class="space-y-4">
+            <div>
+              <input type="range" min="0" max="10000" class="w-full" id="priceRange">
+            </div>
+            <div class="flex justify-between text-sm text-gray-600">
+              <span>₹0</span>
+              <span>₹10,000+</span>
+            </div>
+            <div class="pt-2">
+              <button class="bg-black text-white px-4 py-2 w-full text-sm">Apply Filter</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+          <h3 class="font-semibold text-lg mb-3">Size</h3>
+          <div class="flex flex-wrap gap-2">
+            <button class="border px-3 py-1 rounded hover:bg-black hover:text-white">XS</button>
+            <button class="border px-3 py-1 rounded hover:bg-black hover:text-white">S</button>
+            <button class="border px-3 py-1 rounded hover:bg-black hover:text-white">M</button>
+            <button class="border px-3 py-1 rounded hover:bg-black hover:text-white">L</button>
+            <button class="border px-3 py-1 rounded hover:bg-black hover:text-white">XL</button>
+            <button class="border px-3 py-1 rounded hover:bg-black hover:text-white">XXL</button>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h3 class="font-semibold text-lg mb-3">Color</h3>
+          <div class="flex flex-wrap gap-2">
+            <button class="w-6 h-6 rounded-full bg-black border"></button>
+            <button class="w-6 h-6 rounded-full bg-white border"></button>
+            <button class="w-6 h-6 rounded-full bg-red-500"></button>
+            <button class="w-6 h-6 rounded-full bg-blue-500"></button>
+            <button class="w-6 h-6 rounded-full bg-green-500"></button>
+            <button class="w-6 h-6 rounded-full bg-yellow-500"></button>
+            <button class="w-6 h-6 rounded-full bg-purple-500"></button>
+            <button class="w-6 h-6 rounded-full bg-pink-500"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="md:w-3/4 lg:w-4/5">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold">All Products</h1>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-600">Sort by:</span>
+            <select class="border rounded px-2 py-1 text-sm">
+              <option>Newest First</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Most Popular</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Product 1 -->
+          <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+            <div class="relative">
+              <img src="./images/Premium Slim-Fit Blazer.jpg" alt="Premium Slim-Fit Blazer" class="w-full h-64 object-cover">
+              <div class="overlay absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                <div class="space-x-2">
+                  <button class="add-to-cart-btn bg-black text-white p-2 rounded-full hover:bg-gray-800"
+                    data-product-id="102"
+                    data-product-name="Premium Slim-Fit Blazer"
+                    data-product-price="4999"
+                    data-product-image="./images/Premium Slim-Fit Blazer.jpg"
+                    data-quantity="1"
+                    title="Add to Cart">
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                  <button class="bg-white text-black p-2 rounded-full hover:bg-gray-100" title="Add to Wishlist">
+                    <i class="ri-heart-line"></i>
+                  </button>
+                  <a href="Premium_Slim-Fit_Blazer.html" class="inline-block bg-white text-black p-2 rounded-full hover:bg-gray-100" title="View Details">
+                    <i class="ri-eye-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <a href="Premium_Slim-Fit_Blazer.html" class="block">
+                <h3 class="font-medium mb-1 hover:text-primary">Premium Slim-Fit Blazer</h3>
+                <div class="flex items-center mb-1">
+                  <div class="text-yellow-500 text-sm flex">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-half-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 ml-1">(24)</span>
+                </div>
+                <p class="font-semibold">₹4,999</p>
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+            <div class="relative">
+              <img src="./images/Classic Slim Jeans in Dark Blue.jpg" alt="Classic Slim Jeans in Dark Blue" class="w-full h-64 object-cover">
+              <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">SALE</div>
+              <div class="overlay absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                <div class="space-x-2">
+                  <button class="add-to-cart-btn bg-black text-white p-2 rounded-full hover:bg-gray-800"
+                    data-product-id="101"
+                    data-product-name="Classic Slim Jeans in Dark Blue"
+                    data-product-price="1999"
+                    data-product-image="./images/Classic Slim Jeans in Dark Blue.jpg"
+                    data-quantity="1"
+                    title="Add to Cart">
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                  <button class="bg-white text-black p-2 rounded-full hover:bg-gray-100" title="Add to Wishlist">
+                    <i class="ri-heart-line"></i>
+                  </button>
+                  <a href="Classic_Slim_Jeans_in_Dark_Blue.html" class="inline-block bg-white text-black p-2 rounded-full hover:bg-gray-100" title="View Details">
+                    <i class="ri-eye-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <a href="Classic_Slim_Jeans_in_Dark_Blue.html" class="block">
+                <h3 class="font-medium mb-1 hover:text-primary">Classic Slim Jeans in Dark Blue</h3>
+                <div class="flex items-center mb-1">
+                  <div class="text-yellow-500 text-sm flex">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 ml-1">(15)</span>
+                </div>
+                <div>
+                  <span class="font-semibold">₹1,999</span>
+                  <span class="text-gray-500 line-through text-sm ml-2">₹2,999</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+            <div class="relative">
+              <img src="./images/Casual Hoodie in Heather Grey.jpg" alt="Casual Hoodie in Heather Grey" class="w-full h-64 object-cover">
+              <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">SALE</div>
+              <div class="overlay absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                <div class="space-x-2">
+                  <button class="add-to-cart-btn bg-black text-white p-2 rounded-full hover:bg-gray-800"
+                    data-product-id="103"
+                    data-product-name="Casual Hoodie in Heather Grey"
+                    data-product-price="1999"
+                    data-product-image="./images/Casual Hoodie in Heather Grey.jpg"
+                    data-quantity="1"
+                    title="Add to Cart">
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                  <button class="bg-white text-black p-2 rounded-full hover:bg-gray-100" title="Add to Wishlist">
+                    <i class="ri-heart-line"></i>
+                  </button>
+                  <a href="Casual Hoodie_in_Heather_Grey.html" class="inline-block bg-white text-black p-2 rounded-full hover:bg-gray-100" title="View Details">
+                    <i class="ri-eye-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <a href="Casual Hoodie_in_Heather_Grey.html" class="block">
+                <h3 class="font-medium mb-1 hover:text-primary">Casual Hoodie in Heather Grey</h3>
+                <div class="flex items-center mb-1">
+                  <div class="text-yellow-500 text-sm flex">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-line"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 ml-1">(5)</span>
+                </div>
+                <div>
+                  <span class="font-semibold">₹1,999</span>
+                  <span class="text-gray-500 line-through text-sm ml-2">₹2,499</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Product 4 -->
+          <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+            <div class="relative">
+              <img src="./images/Frame_Detail_Dress_in_Natural-Navy.jpg" alt="Frame Detail Dress in Natural-Navy" class="w-full h-64 object-cover">
+              <div class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">NEW</div>
+              <div class="overlay absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                <div class="space-x-2">
+                  <button class="add-to-cart-btn bg-black text-white p-2 rounded-full hover:bg-gray-800"
+                    data-product-id="104"
+                    data-product-name="Frame Detail Dress in Natural-Navy"
+                    data-product-price="2999"
+                    data-product-image="./images/Frame_Detail_Dress_in_Natural-Navy.jpg"
+                    data-quantity="1"
+                    title="Add to Cart">
+                    <i class="ri-shopping-bag-line"></i>
+                  </button>
+                  <button class="bg-white text-black p-2 rounded-full hover:bg-gray-100" title="Add to Wishlist">
+                    <i class="ri-heart-line"></i>
+                  </button>
+                  <a href="Frame_Detail_Dress_in_Natural-Navy.html" class="inline-block bg-white text-black p-2 rounded-full hover:bg-gray-100" title="View Details">
+                    <i class="ri-eye-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <a href="Frame_Detail_Dress_in_Natural-Navy.html" class="block">
+                <h3 class="font-medium mb-1 hover:text-primary">Frame Detail Dress in Natural-Navy</h3>
+                <div class="flex items-center mb-1">
+                  <div class="text-yellow-500 text-sm flex">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <span class="text-xs text-gray-500 ml-1">(12)</span>
+                </div>
+                <p class="font-semibold">₹2,999</p>
+              </a>
+            </div>
+          </div>
+          
+          <!-- More product cards can be added here... -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center mt-10">
+          <nav>
+            <ul class="flex gap-1">
+              <li><a href="#" class="px-3 py-1 border rounded hover:bg-black hover:text-white">1</a></li>
+              <li><a href="#" class="px-3 py-1 border rounded hover:bg-black hover:text-white">2</a></li>
+              <li><a href="#" class="px-3 py-1 border rounded hover:bg-black hover:text-white">3</a></li>
+              <li><a href="#" class="px-3 py-1 border rounded hover:bg-black hover:text-white">4</a></li>
+              <li><a href="#" class="px-3 py-1 border rounded hover:bg-black hover:text-white">5</a></li>
+              <li><span class="px-3 py-1">...</span></li>
+              <li><a href="#" class="px-3 py-1 border rounded hover:bg-black hover:text-white">10</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 py-12 mt-8">
+    <div class="container mx-auto px-4">
+      <!-- Top Features -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="flex items-center space-x-4">
+          <i class="ri-truck-line text-3xl text-gray-700"></i>
+          <div>
+            <h3 class="font-semibold text-gray-900">FAST & FREE DELIVERY</h3>
+            <p class="text-sm text-gray-600">On all orders over 999</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <i class="ri-store-line text-3xl text-gray-700"></i>
+          <div>
+            <h3 class="font-semibold text-gray-900">RETURNS AND EXCHANGES</h3>
+            <p class="text-sm text-gray-600">15 days to return your product</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <i class="ri-shield-check-line text-3xl text-gray-700"></i>
+          <div>
+            <h3 class="font-semibold text-gray-900">SECURE PAYMENT</h3>
+            <p class="text-sm text-gray-600">100% secure payments</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <i class="ri-customer-service-2-line text-3xl text-gray-700"></i>
+          <div>
+            <h3 class="font-semibold text-gray-900">24/7 SUPPORT</h3>
+            <p class="text-sm text-gray-600">Dedicated support in 24h</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <br>
+
+      <!-- Newsletter -->
+      <div class="text-center mb-12">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">SIGN UP TO OUR NEWSLETTER</h3>
+        <p class="text-sm text-gray-600 mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+        <form class="flex justify-center items-center max-w-md mx-auto">
+          <input type="email" placeholder="Enter your email address" class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+          <button type="submit" class="bg-black text-white px-4 py-2 hover:bg-gray-800">
+            <i class="ri-mail-send-line"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Links and Contact -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-gray-600">
+        <!-- Contact Info -->
+        <div>
+          <h3 class="font-bold text-gray-900 mb-4">LIFE STYLE</h3>
+          <p>Line Baazar, <br>Allahabad, U.P </p>
+          <p class="mt-2">(+91) 6306407861<br>info@lifestyle.com</p>
+        </div>
+
+        <!-- Shop Links -->
+        <div>
+          <h3 class="font-bold text-gray-900 mb-4">SHOP</h3>
+          <ul>
+            <li><a href="#" class="hover:underline">Women</a></li>
+            <li><a href="#" class="hover:underline">Men</a></li>
+            <li><a href="#" class="hover:underline">Kids</a></li>
+            <li><a href="#" class="hover:underline">Sale</a></li>
+          </ul>
+        </div>
+
+        <!-- About Us Links -->
+        <div>
+          <h3 class="font-bold text-gray-900 mb-4">ABOUT US</h3>
+          <ul>
+            <li><a href="aboutus.html" class="hover:underline">About</a></li>
+            <li><a href="#" class="hover:underline">Press</a></li>
+            <li><a href="#" class="hover:underline">Stores</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Service Links -->
+        <div>
+          <h3 class="font-bold text-gray-900 mb-4">CUSTOMER SERVICE</h3>
+          <ul>
+            <li><a href="#" class="hover:underline">Track Order</a></li>
+            <li><a href="#" class="hover:underline">Return & Cancellations</a></li>
+            <li><a href="help.html" class="hover:underline">FAQ</a></li>
+            <li><a href="account.html" class="hover:underline">Manage Account</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="flex flex-col md:flex-row justify-between items-center mt-12 text-sm text-gray-600">
+        <p>© 2025 LifeStyle. All rights reserved.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="hover:underline">Privacy Policy</a>
+          <a href="#" class="hover:underline">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
